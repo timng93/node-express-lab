@@ -31,5 +31,9 @@ app.listen(port, function() {
 
 app.get("/", function(request, response) {
   console.log("Get list of all quotes");
-  response.json(quotes);
+  if (request.query.year) {
+    response.send("Return list of quotes from year:" + request.query.year);
+  } else {
+    response.json(quotes);
+  }
 });
