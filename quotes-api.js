@@ -4,6 +4,8 @@ const app = express();
 
 const port = 3000;
 
+const bodyParser = require("body-parser");
+
 const quotes = [
   {
     id: 1,
@@ -25,11 +27,13 @@ const quotes = [
   }
 ];
 
+app.use(bodyParser.urlencoded({extended: true}));
+
 app.listen(port, function() {
   console.log("Express app listening on port " + port);
 });
 
-app.get("/quotes/:id", function(request, response) {
-  console.log("return quote with ID: " + request.params.id);
-  response.send("Return Quote with id" + request.params.id);
+app.post("/quotes", function(req, res) {
+  console.log("Insert new quote" + req.body.quote);
+  res.json(req.body);
 });
