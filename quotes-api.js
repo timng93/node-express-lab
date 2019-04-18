@@ -29,11 +29,7 @@ app.listen(port, function() {
   console.log("Express app listening on port " + port);
 });
 
-app.get("/", function(request, response) {
-  console.log("Get list of all quotes");
-  if (request.query.year) {
-    response.send("Return list of quotes from year:" + request.query.year);
-  } else {
-    response.json(quotes);
-  }
+app.get("/quotes/:id", function(request, response) {
+  console.log("return quote with ID: " + request.params.id);
+  response.send("Return Quote with id" + request.params.id);
 });
